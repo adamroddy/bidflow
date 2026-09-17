@@ -1,6 +1,6 @@
 package com.roddy.bidflow.auction.domain
 
-enum class AuctionState {
+enum class AuctionStatus {
     PENDING,
     ACTIVE,
     CLOSED

@@ -29,7 +29,7 @@ class Auction(
     val currentBidId: UUID? = null,
 
     @Column
-    val currentAmount: BigDecimal? = null,
+    val currentAmount: BigDecimal = BigDecimal.ZERO,
 
     @Column(nullable = false)
     val startDateTime: OffsetDateTime,
@@ -39,5 +39,5 @@ class Auction(
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    val state: AuctionState
+    val status: AuctionStatus
 )
