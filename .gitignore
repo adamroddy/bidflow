@@ -1,6 +1,7 @@
 HELP.md
 .gradle
 build/
+minio/
 src/main/resources/keys/private.pem
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
