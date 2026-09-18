@@ -22,11 +22,6 @@ class BidService(
 
     private val logger = KotlinLogging.logger {}
 
-    /**
-     * Bids can only be placed on active auctions
-     * A bid must exceed the current highest bid
-     * A user cannot bid on their own auction
-     */
     @Transactional
     fun placeBid(bidRequest: BidRequest): Bid? {
         val auction = auctionService.findAuctionById(bidRequest.auctionId)
@@ -53,7 +48,7 @@ class BidService(
     }
 
 
-    fun finByAuctionId(auctionId: UUID): List<Bid> {
+    fun findByAuctionId(auctionId: UUID): List<Bid> {
         return bidRepository.findByAuctionId(auctionId)
     }
 }

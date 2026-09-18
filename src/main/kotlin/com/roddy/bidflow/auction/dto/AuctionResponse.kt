@@ -1,7 +1,6 @@
 package com.roddy.bidflow.auction.dto
 
 import com.roddy.bidflow.auction.domain.AuctionStatus
-import java.io.Serializable
 import java.math.BigDecimal
 import java.time.OffsetDateTime
 import java.util.UUID
@@ -15,4 +14,4 @@ data class AuctionResponse(
     val startDateTime: OffsetDateTime,
     val endDateTime: OffsetDateTime,
     val status: AuctionStatus
-) : Serializable
+)
