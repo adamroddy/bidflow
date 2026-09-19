@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer
 import org.springframework.security.config.annotation.web.invoke
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
@@ -30,9 +31,11 @@ class SecurityConfig(
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http {
             authorizeHttpRequests {
+                authorize("/actuator/**", permitAll)
                 authorize("/auctions**", permitAll)
-                authorize("/users**", permitAll)
                 authorize("/auth/token", permitAll)
+                authorize("/error", permitAll)
+                authorize("/users**", permitAll)
                 authorize(anyRequest, authenticated)
             }
 
@@ -51,6 +54,13 @@ class SecurityConfig(
         }
 
         return http.build()
+    }
+
+    @Bean
+    fun webSecurityCustomizer(): WebSecurityCustomizer {
+        return WebSecurityCustomizer { web ->
+            web.ignoring().requestMatchers("/actuator/health")
+        }
     }
 
     @Bean
